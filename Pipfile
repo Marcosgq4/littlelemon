@@ -8,9 +8,9 @@ django = "*"
 djangorestframework = "*"
 djoser = "*"
 django-filter = "*"
+mysqlclient = "*"
 
 [dev-packages]
-
 
 [requires]
 python_version = "3.11"
