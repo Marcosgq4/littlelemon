@@ -15,14 +15,16 @@ def home(request):
     
 class MenuView(ListCreateAPIView):
     
+    serializer_class = MenuSerializer
+    
     def get(self, request):
         items = Menu.objects.all()
         serializer = MenuSerializer(items, many=True)
         return Response({"menu": serializer.data})
     
     def post(self, request):
-        item = request.data.get('menu')
-        serializer = MenuSerializer(data=item)
+        #item = request.data.get('menu')
+        serializer = MenuSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             item_saved = serializer.save()
         return Response({"success": "Menu '{}' created successfully".format(item_saved.title)})
